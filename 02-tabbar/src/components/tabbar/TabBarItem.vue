@@ -1,13 +1,13 @@
 <template>
 
-  <div class="tab-bar-item">
+  <div class="tab-bar-item" @click="btnClick">
     <div v-if="!isActive">
       <slot name="item-icon"/>
     </div>
     <div v-else>
       <slot name="item-icon-active"/>
     </div>
-    <div :class="{active:isActive}">
+    <div :style="activeStyle">
       <slot name="item-text"/>
     </div>
   </div>
@@ -18,10 +18,34 @@
 <script>
   export default {
     name: "TabBarItem",
-    data() {
-      return {
-        isActive: false
+    computed: {
+      isActive() {
+        console.log('改变了1');
+        return this.$route.path.indexOf(this.link) != -1;
+      },
+      activeStyle() {
+        console.log('改变了2');
+
+        return this.isActive ? {color: this.activeColor} : {};
       }
+    },
+    props: {
+      link: String,
+      activeColor: {
+        type: String,
+        default: 'red'
+      }
+    },
+    methods: {
+      btnClick() {
+        if(this.$route.path!=this.link){
+          console.log(this.$route.path);
+          this.$router.replace(this.link);
+        }
+      }
+    },
+    activated() {
+      this.isActive = false;
     }
   }
 </script>

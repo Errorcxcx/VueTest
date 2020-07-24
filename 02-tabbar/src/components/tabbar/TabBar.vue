@@ -6,7 +6,10 @@
 
 <script>
   export default {
-    name: "TabBar"
+    name: "TabBar",
+    data:{
+      messaged:'ss'
+    }
   }
 </script>
 

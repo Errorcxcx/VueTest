@@ -1,5 +1,8 @@
 <template>
-  <h2>首页</h2>
+  <div>
+    <h2>首页</h2>
+
+  </div>
 </template>
 
 <script>
